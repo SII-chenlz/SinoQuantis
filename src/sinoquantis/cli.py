@@ -20,6 +20,7 @@ from sinoquantis.pipelines.update_financials import update_financials as update_
 from sinoquantis.pipelines.update_stock_basic import (
     update_stock_basic as update_stock_basic_pipeline,
 )
+from sinoquantis.web import serve as serve_web_app
 
 load_dotenv()
 
@@ -107,6 +108,16 @@ def update_filings(start: str = typer.Option(...), end: str = typer.Option(...))
     """Update A-share filing announcement index."""
     rows = update_filings_pipeline(start, end)
     typer.echo(f"Updated filing_index rows: {rows}")
+
+
+@app.command("serve-web")
+def serve_web(
+    host: str = typer.Option("127.0.0.1", help="Web server host."),
+    port: int = typer.Option(8765, help="Web server port."),
+) -> None:
+    """Start the local SinoQuantis web console."""
+    typer.echo(f"SinoQuantis Web Console: http://{host}:{port}")
+    serve_web_app(host=host, port=port)
 
 
 if __name__ == "__main__":

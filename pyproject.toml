@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sinoquantis"
+version = "0.1.0"
+description = "An A-share quantitative research platform with LLM-enhanced fundamental analysis."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "SinoQuantis Contributors" }]
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "duckdb>=0.10",
+    "typer>=0.12",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "loguru>=0.7",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "tenacity>=8.2",
+    "akshare>=1.12",
+    "tushare>=1.2",
+    "openai>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+sinoquantis = "sinoquantis.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

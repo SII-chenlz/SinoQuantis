@@ -18,6 +18,7 @@
 - 日线行情更新
 - 复权因子更新
 - 财务指标更新
+- 巨潮公告索引更新
 - CLI 命令入口
 - mocked tests，避免测试依赖真实外部 API
 
@@ -127,6 +128,12 @@ python -m sinoquantis.cli update-adj-factor --start 20200101 --end 20260524
 python -m sinoquantis.cli update-financials --start 20180101 --end 20260524
 ```
 
+更新公告索引：
+
+```bash
+python -m sinoquantis.cli update-filings --start 20240101 --end 20260524
+```
+
 ## 数据源策略
 
 ### Tushare Pro
@@ -211,7 +218,7 @@ python -m ruff check .
 - Task 1：项目骨架
 - Task 2：DuckDB schema 和存储工具
 - Task 3：Tushare + AKShare 数据源接入，已完成
-- Task 4：公告索引、PDF 下载预留、公告正文解析入口
+- Task 4：公告索引、PDF 下载预留、公告正文解析入口，部分完成
 - Task 5：DeepSeek API 分析模块
 - Task 6：基础因子生成
 - Task 7：日频回测引擎

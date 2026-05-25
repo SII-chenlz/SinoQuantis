@@ -15,6 +15,7 @@ from sinoquantis.db import init_db
 from sinoquantis.pipelines.update_adj_factor import update_adj_factor as update_adj_factor_pipeline
 from sinoquantis.pipelines.update_calendar import update_calendar as update_calendar_pipeline
 from sinoquantis.pipelines.update_daily_bar import update_daily_bar as update_daily_bar_pipeline
+from sinoquantis.pipelines.update_filings import update_filings as update_filings_pipeline
 from sinoquantis.pipelines.update_financials import update_financials as update_financials_pipeline
 from sinoquantis.pipelines.update_stock_basic import (
     update_stock_basic as update_stock_basic_pipeline,
@@ -99,6 +100,13 @@ def update_financials(start: str = typer.Option(...), end: str = typer.Option(..
     """Update A-share financial indicators."""
     rows = update_financials_pipeline(start, end)
     typer.echo(f"Updated financial_indicator rows: {rows}")
+
+
+@app.command("update-filings")
+def update_filings(start: str = typer.Option(...), end: str = typer.Option(...)) -> None:
+    """Update A-share filing announcement index."""
+    rows = update_filings_pipeline(start, end)
+    typer.echo(f"Updated filing_index rows: {rows}")
 
 
 if __name__ == "__main__":
